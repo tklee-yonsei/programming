@@ -1,0 +1,17 @@
+{
+    "name": "C Development Container",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools-extension-pack",
+                "formulahendry.code-runner"
+            ]
+        }
+    },
+    "remoteUser": "root"
+}
