@@ -1,10 +1,6 @@
 #include <stdio.h>
 
 int main() {
-
-    printf("value: %d\n", *(&value));
-
-
     int a = 50;
     int b = 30;
 
