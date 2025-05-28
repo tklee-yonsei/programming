@@ -5,60 +5,60 @@
 // 자판기 생성 함수
 VendingMachine createVendingMachine(const char* name) {
     VendingMachine vm;
-    strncpy(vm.name, name, sizeof(vm.name) - 1);
-    vm.name[sizeof(vm.name) - 1] = '\0';
-    vm.productCount = 0;
-    vm.balance = 0;
+    // TODO: 자판기 이름 설정 (strncpy 사용)
+    strcpy(vm.name, ""); // 임시 초기화
+    // TODO: 제품 개수 초기화
+    vm.productCount = 0; // 기본 초기화
+    // TODO: 잔액 초기화
+    vm.balance = 0; // 기본 초기화
+    (void)name; // 경고 방지용
     return vm;
 }
 
 // 자판기에 제품 추가 - 새 자판기 반환
 VendingMachine addProductToMachine(VendingMachine vm, int id, const char* name, int price, int stock) {
-    if (vm.productCount >= MAX_PRODUCTS) {
-        printf("제품 추가 실패: 최대 제품 수 초과\n");
-        return vm; // 변경 없이 반환
-    }
+    // TODO: 최대 제품 수 확인
     
-    // 제품 ID 중복 검사
-    for (int i = 0; i < vm.productCount; i++) {
-        if (vm.products[i].id == id) {
-            printf("제품 추가 실패: ID 중복\n");
-            return vm; // 변경 없이 반환
-        }
-    }
+    // TODO: 제품 ID 중복 검사
     
-    // 새 제품 추가
-    vm.products[vm.productCount] = createProduct(id, name, price, stock);
-    vm.productCount++;
+    // TODO: 새 제품 추가
+    
+    // 경고 방지용
+    (void)id; (void)name; (void)price; (void)stock;
     
     return vm; // 새로운 상태 반환
 }
 
 // 자판기 제품 목록 출력
 void displayProducts(const VendingMachine vm) {
-    printf("===== %s 자판기 =====\n", vm.name);
-    printf("현재 잔액: %d원\n", vm.balance);
-    printf("------------------\n");
+    // TODO: 자판기 이름과 현재 잔액 출력
     
-    for (int i = 0; i < vm.productCount; i++) {
-        displayProduct(vm.products[i]);
-    }
+    // TODO: 모든 제품 정보 출력 (반복문 사용)
     
-    printf("------------------\n");
+    // 경고 방지용
+    (void)vm;
 }
 
 // 돈 투입 - 새 자판기 반환
 VendingMachine insertMoney(VendingMachine vm, int amount) {
-    if (amount > 0) {
-        vm.balance += amount;
-        printf("%d원이 투입되었습니다. 현재 잔액: %d원\n", amount, vm.balance);
-    }
+    // TODO: 유효한 금액인지 확인
+    // TODO: 잔액에 추가
+    // TODO: 투입 완료 메시지 출력
+    
+    // 경고 방지용
+    (void)amount;
+    
     return vm;
 }
 
 // 현재 잔액 확인
 int getBalance(const VendingMachine vm) {
-    return vm.balance;
+    // TODO: 현재 잔액 반환
+    
+    // 경고 방지용
+    (void)vm;
+    
+    return 0;
 }
 
 // 제품 구매 - 구매 결과와 새 자판기 상태 반환
@@ -66,59 +66,33 @@ PurchaseResult purchaseProduct(VendingMachine vm, int productId) {
     PurchaseResult result;
     result.machine = vm;
     result.success = 0;
+    strcpy(result.message, ""); // 기본 초기화
     
-    // 해당 ID의 제품 찾기
-    int index = -1;
-    for (int i = 0; i < vm.productCount; i++) {
-        if (vm.products[i].id == productId) {
-            index = i;
-            break;
-        }
-    }
+    // TODO: 해당 ID의 제품 찾기
     
-    if (index == -1) {
-        strcpy(result.message, "해당 제품이 존재하지 않습니다.");
-        return result;
-    }
+    // TODO: 제품 존재 여부 확인
     
-    Product selectedProduct = vm.products[index];
+    // TODO: 재고 확인
     
-    // 재고 확인
-    if (checkStock(selectedProduct) <= 0) {
-        strcpy(result.message, "해당 제품의 재고가 없습니다.");
-        return result;
-    }
+    // TODO: 잔액 확인
     
-    // 잔액 확인
-    if (vm.balance < selectedProduct.price) {
-        sprintf(result.message, "잔액이 부족합니다. 필요한 금액: %d원, 현재 잔액: %d원", 
-                selectedProduct.price, vm.balance);
-        return result;
-    }
+    // TODO: 구매 처리 (잔액 차감, 재고 감소)
     
-    // 구매 처리
-    vm.balance -= selectedProduct.price;
-    vm.products[index] = decreaseStock(selectedProduct);
+    // 경고 방지용
+    (void)productId;
     
-    sprintf(result.message, "%s를 구매했습니다. 남은 잔액: %d원", 
-            selectedProduct.name, vm.balance);
-    
-    result.machine = vm;
-    result.success = 1;
     return result;
 }
 
 // 잔돈 반환 - 반환된 금액과 새 자판기 상태 반환
 ChangeResult returnChange(VendingMachine vm) {
     ChangeResult result;
-    result.amount = vm.balance;
+    // TODO: 현재 잔액을 반환 금액으로 설정
+    result.amount = 0; // 기본 초기화
     
-    if (result.amount > 0) {
-        printf("잔돈 %d원이 반환되었습니다.\n", result.amount);
-        vm.balance = 0;
-    } else {
-        printf("반환할 잔돈이 없습니다.\n");
-    }
+    // TODO: 잔돈 반환 메시지 출력
+    
+    // TODO: 자판기 잔액 초기화
     
     result.machine = vm;
     return result;

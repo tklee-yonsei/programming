@@ -4,18 +4,19 @@
 
 // 메뉴 표시 및 사용자 선택 함수
 int displayMenu() {
-    printf("\n===== 자판기 메뉴 =====\n");
-    printf("1. 제품 목록 보기\n");
-    printf("2. 돈 넣기\n");
-    printf("3. 제품 구매하기\n");
-    printf("4. 잔돈 반환하기\n");
-    printf("0. 종료\n");
-    printf("선택: ");
+    // TODO: 메뉴 출력
+    // "===== 자판기 메뉴 ====="
+    // "1. 제품 목록 보기"
+    // "2. 돈 넣기"
+    // "3. 제품 구매하기"
+    // "4. 잔돈 반환하기"
+    // "0. 종료"
+    // "선택: "
     
     return getIntInput();
 }
 
-// 숫자 입력 받는 함수
+// 숫자 입력 받는 함수 (완성된 상태로 제공)
 int getIntInput() {
     int input;
     char buffer[100];
@@ -33,7 +34,7 @@ int getIntInput() {
     return input;
 }
 
-// 화면 정리 (시스템 명령어 호출)
+// 화면 정리 (완성된 상태로 제공)
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
